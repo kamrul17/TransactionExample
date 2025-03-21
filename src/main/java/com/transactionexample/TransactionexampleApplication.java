@@ -3,9 +3,12 @@ package com.transactionexample;
 import com.transactionexample.entity.Booking;
 import com.transactionexample.service.BookingService;
 import com.transactionexample.service.OrderService;
+import com.transactionexample.service.QualiAndPrimaryEx;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +31,7 @@ Transaction:
 Imagine you're working on a group project where Person A (Main Method) is responsible
  for starting the project, and they ask Person B (Called Method) for help.
 
-REQUIRED → Person B joins Person A in the same work session.
+REQUIRED → Person B joins Person A in the same work session if no transaction available then create one.
 REQUIRES_NEW → Person B starts a new, independent session.
 SUPPORTS →I don’t care whether there's a transaction or not.
 👉 If there’s already a transaction → I’ll join it.
@@ -54,6 +57,7 @@ So, propagation controls whether a new transaction starts or the existing one is
 //Allow the main transaction to decide whether to proceed or fail later.
 
 @SpringBootApplication
+//@EnableScheduling
 public class TransactionexampleApplication {
 
 	public static void main(String[] args) {
@@ -62,9 +66,15 @@ public class TransactionexampleApplication {
 //		 BookingService bean = context.getBean(BookingService.class);
 //		 bean.bookHotel("Fam",12000);
 
-		List<Long> itemIds = Arrays.asList(1L, 2L, 3L, 4L);
-		 OrderService orderService = context.getBean(OrderService.class);
-		orderService.placeOrder(itemIds);
+//		List<Long> itemIds = Arrays.asList(1L, 2L, 3L, 4L);
+//		 OrderService orderService = context.getBean(OrderService.class);
+//		orderService.placeOrder(itemIds);
+
+//		Example of PRIMARY AND QUALIFIER
+//		 QualiAndPrimaryEx bean = context.getBean(QualiAndPrimaryEx.class);
+//		 bean.pay();
+		QualiAndPrimaryEx bean = context.getBean(QualiAndPrimaryEx.class);
+
 	}
 
 }

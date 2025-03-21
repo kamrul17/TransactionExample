@@ -15,8 +15,13 @@ public class ProductController {
     public void readUncommitted(@PathVariable Long id) {
         productService.readUncommitted(id);
     }
+//    @GetMapping("/ScheduleTesting")
+//    public void ScheduleTesting() {
+//        productService.ScheduleTesting();
+//    }
 
-    @GetMapping("/read/committed/{id}")
+
+        @GetMapping("/read/committed/{id}")
     public void readCommitted(@PathVariable Long id) {
         productService.readCommitted(id);
     }

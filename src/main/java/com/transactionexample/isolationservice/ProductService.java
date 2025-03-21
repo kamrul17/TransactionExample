@@ -4,13 +4,14 @@ import com.transactionexample.entity.Product;
 import com.transactionexample.repository.ProductRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductService {
-
+public static    int c=0;
     @Autowired
     private ProductRepository productRepository;
 
@@ -23,7 +24,7 @@ public class ProductService {
         System.out.println("READ_UNCOMMITTED: " + productRepository.findById(id).get());
     }
 
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public void readCommitted(Long id) {
         System.out.println("Reading product...");
 
@@ -68,5 +69,11 @@ public class ProductService {
 
     private void sleep(long ms) {
         try { Thread.sleep(ms); } catch (InterruptedException e) { e.printStackTrace(); }
+    }
+//@Scheduled(fixedRate = 2000)
+    public void ScheduleTesting() {
+
+        System.out.println("ScheduleTesting : "+c++);
+    sleep(5000);
     }
 }
