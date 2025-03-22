@@ -3,6 +3,7 @@ package com.transactionexample;
 import com.transactionexample.entity.Booking;
 import com.transactionexample.service.BookingService;
 import com.transactionexample.service.OrderService;
+import com.transactionexample.service.PaymentService;
 import com.transactionexample.service.QualiAndPrimaryEx;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -73,7 +74,8 @@ public class TransactionexampleApplication {
 //		Example of PRIMARY AND QUALIFIER
 //		 QualiAndPrimaryEx bean = context.getBean(QualiAndPrimaryEx.class);
 //		 bean.pay();
-		QualiAndPrimaryEx bean = context.getBean(QualiAndPrimaryEx.class);
+		PaymentService bean = context.getBean(PaymentService.class);
+	bean.doPay();
 
 	}
 
